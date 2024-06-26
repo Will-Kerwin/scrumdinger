@@ -29,6 +29,7 @@
 		DADDAC902C2C93DC0056786A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DADDAC8F2C2C93DC0056786A /* Assets.xcassets */; };
 		DADDAC922C2C93FC0056786A /* EditScrumSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADDAC912C2C93FC0056786A /* EditScrumSheet.swift */; };
 		DADDAC942C2C96670056786A /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADDAC932C2C96670056786A /* History.swift */; };
+		DADDAC972C2CA1A50056786A /* ScrumStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADDAC962C2CA1A50056786A /* ScrumStore.swift */; };
 		DAE769642C2A065A00B09EEC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAE769622C2A065A00B09EEC /* Preview Assets.xcassets */; };
 		DAE769662C2A07A200B09EEC /* TrailingIconLabelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE769652C2A07A200B09EEC /* TrailingIconLabelStyle.swift */; };
 		DAE769682C2A092700B09EEC /* ScrumsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE769672C2A092700B09EEC /* ScrumsView.swift */; };
@@ -77,6 +78,7 @@
 		DADDAC8F2C2C93DC0056786A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DADDAC912C2C93FC0056786A /* EditScrumSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScrumSheet.swift; sourceTree = "<group>"; };
 		DADDAC932C2C96670056786A /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
+		DADDAC962C2CA1A50056786A /* ScrumStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrumStore.swift; sourceTree = "<group>"; };
 		DAE769622C2A065A00B09EEC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DAE769652C2A07A200B09EEC /* TrailingIconLabelStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailingIconLabelStyle.swift; sourceTree = "<group>"; };
 		DAE769672C2A092700B09EEC /* ScrumsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrumsView.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 		DA7EE49E2C28BE59008BB1D5 /* Scrumdinger */ = {
 			isa = PBXGroup;
 			children = (
+				DADDAC952C2CA19C0056786A /* Store */,
 				DADDAC8F2C2C93DC0056786A /* Assets.xcassets */,
 				DABF237F2C2B6CCB00FBBA24 /* Resources */,
 				DABF23732C2B5D0C00FBBA24 /* Views */,
@@ -195,6 +198,14 @@
 				DADDAC932C2C96670056786A /* History.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		DADDAC952C2CA19C0056786A /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				DADDAC962C2CA1A50056786A /* ScrumStore.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		DAE769632C2A065A00B09EEC /* Preview Content */ = {
@@ -339,6 +350,7 @@
 			files = (
 				DABF23722C2AD1F300FBBA24 /* ThemePicker.swift in Sources */,
 				DABF23772C2B64CA00FBBA24 /* ScrumProgressViewStyle.swift in Sources */,
+				DADDAC972C2CA1A50056786A /* ScrumStore.swift in Sources */,
 				DADDAC942C2C96670056786A /* History.swift in Sources */,
 				DABF237A2C2B658700FBBA24 /* ScrumTimer.swift in Sources */,
 				DAC433932C29878000182392 /* DailyScrum.swift in Sources */,
