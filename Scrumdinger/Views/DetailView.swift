@@ -11,8 +11,7 @@ struct DetailView: View {
     
     @Binding var scrum: DailyScrum
     
-    @State private var editingScrum = DailyScrum.emptyScrum
-    @State private var isPresentingEditView = false
+    @State private var isPresentingEditScrumView = false
     
     var body: some View {
         List{
@@ -44,33 +43,27 @@ struct DetailView: View {
                     Label(attendee.name, systemImage: "person")
                 }
             }
+            Section(header: Text("History")){
+                if scrum.history.isEmpty {
+                    Label("No meetings yet", systemImage: "calendar.badge.exclamationmark")
+                }
+                ForEach(scrum.history) {
+                    history in
+                    HStack{
+                        Image(systemName: "calendar")
+                        Text(history.date, style: .date)
+                    }
+                }
+            }
         }
         .navigationTitle(scrum.title)
         .toolbar{
             Button("Edit") {
-                isPresentingEditView = true
-                editingScrum = scrum
+                isPresentingEditScrumView = true
             }
         }
-        .sheet(isPresented: $isPresentingEditView){
-            NavigationStack{
-                DetailEditView(scrum: $editingScrum)
-                    .navigationTitle(scrum.title)
-                    .toolbar{
-                        ToolbarItem(placement: .cancellationAction){
-                            Button("Cancel"){
-                                isPresentingEditView = false
-                            }
-                        }
-                        ToolbarItem(placement: .confirmationAction){
-                            Button("Done"){
-                                isPresentingEditView = false
-                                scrum = editingScrum
-                            }
-                        }
-                        
-                    }
-            }
+        .sheet(isPresented: $isPresentingEditScrumView){
+           EditScrumSheet(scrum: $scrum, isPresentingEditScrumView: $isPresentingEditScrumView)
         }
     }
 }
