@@ -1,13 +1,10 @@
-//
-//  DailyScrum.swift
-//  Scrumdinger
-//
-//  Created by Will Kerwin on 24/06/2024.
-//
+/*
+ See LICENSE folder for this sample’s licensing information.
+ */
 
 import Foundation
 
-struct DailyScrum : Identifiable, Codable {
+struct DailyScrum: Identifiable, Codable {
     let id: UUID
     var title: String
     var attendees: [Attendee]
@@ -16,7 +13,7 @@ struct DailyScrum : Identifiable, Codable {
         get {
             Double(lengthInMinutes)
         }
-        set{
+        set {
             lengthInMinutes = Int(newValue)
         }
     }
@@ -26,7 +23,7 @@ struct DailyScrum : Identifiable, Codable {
     init(id: UUID = UUID(), title: String, attendees: [String], lengthInMinutes: Int, theme: Theme) {
         self.id = id
         self.title = title
-        self.attendees = attendees.map{Attendee(name: $0)}
+        self.attendees = attendees.map { Attendee(name: $0) }
         self.lengthInMinutes = lengthInMinutes
         self.theme = theme
     }
@@ -49,8 +46,9 @@ extension DailyScrum {
 }
 
 extension DailyScrum {
-    static let sampleData: [DailyScrum] = [
-        DailyScrum(title: "Design", 
+    static let sampleData: [DailyScrum] =
+    [
+        DailyScrum(title: "Design",
                    attendees: ["Cathy", "Daisy", "Simon", "Jonathan"],
                    lengthInMinutes: 10,
                    theme: .yellow),

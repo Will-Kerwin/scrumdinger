@@ -1,14 +1,11 @@
-//
-//  ScrumStore.swift
-//  Scrumdinger
-//
-//  Created by Will Kerwin on 26/06/2024.
-//
+/*
+ See LICENSE folder for this sample’s licensing information.
+ */
 
-import Foundation
+import SwiftUI
 
 @MainActor
-class ScrumStore :ObservableObject{
+class ScrumStore: ObservableObject {
     @Published var scrums: [DailyScrum] = []
     
     private static func fileURL() throws -> URL {
@@ -20,25 +17,24 @@ class ScrumStore :ObservableObject{
     }
     
     func load() async throws {
-        let task = Task<[DailyScrum], Error>{
+        let task = Task<[DailyScrum], Error> {
             let fileURL = try Self.fileURL()
-            guard let data =  try? Data(contentsOf: fileURL) else {
+            guard let data = try? Data(contentsOf: fileURL) else {
                 return []
             }
-            let dailyScrums = try JSONDecoder().decode([DailyScrum].self, from:data)
+            let dailyScrums = try JSONDecoder().decode([DailyScrum].self, from: data)
             return dailyScrums
         }
         let scrums = try await task.value
         self.scrums = scrums
     }
     
-    func save(scrums:[DailyScrum]) async throws {
+    func save(scrums: [DailyScrum]) async throws {
         let task = Task {
             let data = try JSONEncoder().encode(scrums)
             let outfile = try Self.fileURL()
             try data.write(to: outfile)
         }
-        
         _ = try await task.value
     }
 }

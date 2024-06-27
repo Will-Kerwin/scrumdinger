@@ -1,9 +1,6 @@
-//
-//  NewScrumSheet.swift
-//  Scrumdinger
-//
-//  Created by Will Kerwin on 26/06/2024.
-//
+/*
+ See LICENSE folder for this sample’s licensing information.
+ */
 
 import SwiftUI
 
@@ -15,13 +12,13 @@ struct NewScrumSheet: View {
     var body: some View {
         NavigationStack {
             DetailEditView(scrum: $newScrum)
-                .toolbar{
-                    ToolbarItem(placement:.cancellationAction){
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
                         Button("Dismiss") {
                             isPresentingNewScrumView = false
                         }
                     }
-                    ToolbarItem(placement:.confirmationAction){
+                    ToolbarItem(placement: .confirmationAction) {
                         Button("Add") {
                             scrums.append(newScrum)
                             isPresentingNewScrumView = false
@@ -32,6 +29,8 @@ struct NewScrumSheet: View {
     }
 }
 
-#Preview {
-    NewScrumSheet(scrums: .constant(DailyScrum.sampleData), isPresentingNewScrumView: .constant(true))
+struct NewScrumSheet_Previews: PreviewProvider {
+    static var previews: some View {
+        NewScrumSheet(scrums: .constant(DailyScrum.sampleData), isPresentingNewScrumView: .constant(true))
+    }
 }

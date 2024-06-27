@@ -1,45 +1,44 @@
-//
-//  ScrumView.swift
-//  Scrumdinger
-//
-//  Created by Will Kerwin on 24/06/2024.
-//
+/*
+ See LICENSE folder for this sample’s licensing information.
+ */
 
 import SwiftUI
 
 struct ScrumsView: View {
-    
     @Binding var scrums: [DailyScrum]
     @Environment(\.scenePhase) private var scenePhase
     @State private var isPresentingNewScrumView = false
-    let saveAction:  ()->Void
-    
+    let saveAction: ()->Void
+
     var body: some View {
-        if #available(iOS 16.0,*){
-            NavigationStack {
-               ScrumsList(scrums: $scrums, isPresentingNewScrumView: $isPresentingNewScrumView)
+        NavigationStack {
+            List($scrums) { $scrum in
+                NavigationLink(destination: DetailView(scrum: $scrum)) {
+                    CardView(scrum: scrum)
+                }
+                .listRowBackground(scrum.theme.mainColor)
             }
-            .sheet(isPresented: $isPresentingNewScrumView){
-                NewScrumSheet(scrums: $scrums, isPresentingNewScrumView: $isPresentingNewScrumView)
-            }
-            .onChange(of: scenePhase) { oldValue, newValue in
-                if newValue == .inactive {saveAction()}
+            .navigationTitle("Daily Scrums")
+            .toolbar {
+                Button(action: {
+                    isPresentingNewScrumView = true
+                }) {
+                    Image(systemName: "plus")
+                }
+                .accessibilityLabel("New Scrum")
             }
         }
-        else {
-            NavigationView{
-                ScrumsList(scrums: $scrums, isPresentingNewScrumView: $isPresentingNewScrumView)
-            }
-            .sheet(isPresented: $isPresentingNewScrumView){
-                NewScrumSheet(scrums: $scrums, isPresentingNewScrumView: $isPresentingNewScrumView)
-            }
-            .onChange(of: scenePhase) { oldValue, newValue in
-                if newValue == .inactive {saveAction()}
-            }
+        .sheet(isPresented: $isPresentingNewScrumView) {
+            NewScrumSheet(scrums: $scrums, isPresentingNewScrumView: $isPresentingNewScrumView)
+        }
+        .onChange(of: scenePhase) { phase in
+            if phase == .inactive { saveAction() }
         }
     }
 }
 
-#Preview {
-    ScrumsView(scrums: .constant(DailyScrum.sampleData), saveAction: {})
+struct ScrumsView_Previews: PreviewProvider {
+    static var previews: some View {
+        ScrumsView(scrums: .constant(DailyScrum.sampleData), saveAction: {})
+    }
 }
